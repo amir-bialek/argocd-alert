@@ -9,7 +9,7 @@ deployment:
   image:
     dockerregistry: docker.io
     name: nginx
-    tag: 3.2.2
+    tag: latest
     pullPolicy: "Always"
   nameOverride: "nginx"
   fullnameOverride: "nginx"
@@ -23,13 +23,7 @@ deployment:
     fromNFS: []
     emptyDir: []
   env:
-    fromSecrets: 
-    - envName: rabbit-pass
-      secretName: rabbitmq-sec
-      secretKey: rabbitmq-password
-    - envName: rabbit-cookie
-      secretName: rabbitmq-sec
-      secretKey: rabbitmq-erlang-cookie
+    fromSecrets: []
     regular: []
     fromConfigMaps: []
   podAnnotations: {} 
