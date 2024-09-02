@@ -1,0 +1,60 @@
+global:
+  path: "dev"
+  env: dev
+  defaultValuesFile: values.yaml
+  spec:
+    project: default
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    source:
+      repoURL:  https://github.com/amir-bialek/imagry-env
+      targetRevision: HEAD
+
+argocdApplications:
+  monitoring:
+    loki-stack:
+      disableAutomated: true
+      disableFinalizer: false
+      disable: true
+      name: loki-stack
+      namespace: monitoring
+      disableServerSideApply: true
+      wave: 1
+      annotations: {}
+      additionalValuesFiles:
+        - values-add.yaml
+    kube-prometheus-stack:
+      disableAutomated: true
+      disableFinalizer: false
+      disable: true
+      name: kube-prometheus-stack
+      namespace: monitoring
+      disableServerSideApply: false
+      wave: 2
+      annotations: {}
+      additionalValuesFiles:
+        - values-add.yaml
+  databases:
+    rabbitmq:
+      disableAutomated: true
+      disableFinalizer: false
+      disable: true
+      name: rabbitmq
+      namespace: default
+      disableServerSideApply: true
+      wave: 3
+      annotations: {}
+      additionalValuesFiles:
+        - values-add.yaml
+      ignoreDifferences:
+      - jsonPointers:
+          - /data
+        kind: Secret
+        name: rabbitmq
+      - jsonPointers:
+          - /metadata/annotations
+          - /spec/template/metadata/annotations
+        kind: StatefulSet
+        name: rabbitmq
+  

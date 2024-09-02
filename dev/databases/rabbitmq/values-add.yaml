@@ -1,0 +1,6 @@
+nameOverride: "rabbitmq"
+fullnameOverride: "rabbitmq"
+ulimitNofiles: ""
+auth:
+  username: gpu-tester
+
