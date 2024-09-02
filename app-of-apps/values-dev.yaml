@@ -16,7 +16,7 @@ argocdApplications:
     loki-stack:
       disableAutomated: true
       disableFinalizer: false
-      disable: true
+      disable: false
       name: loki-stack
       namespace: monitoring
       disableServerSideApply: true
