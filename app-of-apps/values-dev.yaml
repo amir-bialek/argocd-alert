@@ -58,3 +58,13 @@ argocdApplications:
         kind: StatefulSet
         name: rabbitmq
   
+  other:
+    nginx:
+      disableAutomated: true
+      disableFinalizer: false
+      disable: false
+      name: nginx
+      namespace: network
+      disableServerSideApply: true
+      wave: 1
+      annotations: {}

@@ -1,0 +1,96 @@
+# Deployment
+deployment:
+  enabled: true
+  command: []
+  args: []
+  name: nginx
+  labels: 
+    app: nginx
+  image:
+    dockerregistry: docker.io
+    name: nginx
+    tag: latest
+    pullPolicy: "Always"
+  nameOverride: "nginx"
+  fullnameOverride: "nginx"
+  replicasCount: 1
+  autoscaling:
+    enabled: false
+  volumes:
+    fromSecrets: []
+    fromConfigMaps: []
+    fromPvc: []
+    fromNFS: []
+    emptyDir: []
+  env:
+    fromSecrets: 
+    - envName: rabbit-pass
+      secretName: rabbitmq-sec
+      secretKey: rabbitmq-password
+    - envName: rabbit-cookie
+      secretName: rabbitmq-sec
+      secretKey: rabbitmq-erlang-cookie
+    regular: []
+    fromConfigMaps: []
+  podAnnotations: {} 
+  resources: []
+  podSecurityContext: {}
+  containerSecurityContext: {} 
+  readiness:
+    openContainerPort: false
+    openServicePort: false
+    includeReadinessProbe: false
+  liveness:
+    includeLivenessProbe: false
+  nodeSelector: {}
+  tolerations: []
+  affinity:
+    podSelfAntiAffinity:
+      enabled: false
+    nodeAffinity:
+      enabled: false
+  revisionHistoryLimit: 3
+
+# Service
+service:
+  enabled: false
+  # services:
+  # - name: bialek
+  #   annotations: {}
+  #   labels: {}    
+  #   enableProbePort: true  
+  #   type: ClusterIP
+  #   ports: 
+  #   - name: service-port
+  #     protocol: TCP
+  #     port: 8062
+  #     targetPort: 8062
+  #   selectDeployment: true
+  #   selector: {}
+
+
+networkpolicy:
+  enabled: false
+
+serviceAccount:
+  enabled: false
+
+configMaps:
+  enabled: false
+
+secrets:
+  enabled: false
+
+storageClass:
+  enabled: false
+
+pvc:
+  enabled: false
+
+ingress:
+  enabled: false
+
+job:
+  enabled: false
+
+
