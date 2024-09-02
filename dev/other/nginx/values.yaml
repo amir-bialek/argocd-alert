@@ -9,7 +9,7 @@ deployment:
   image:
     dockerregistry: docker.io
     name: nginx
-    tag: latest
+    tag: latest1
     pullPolicy: "Always"
   nameOverride: "nginx"
   fullnameOverride: "nginx"
